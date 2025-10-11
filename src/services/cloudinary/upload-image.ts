@@ -17,23 +17,35 @@ export default async function uploadImages(
   folder: string,
   publicId: string
 ) {
-  const bytes = await file.arrayBuffer();
-  const buffer = Buffer.from(bytes);
+  try {
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
 
-  const result = await new Promise<UploadApiResponse>((resolve, reject) => {
-    const uploadStream = cloudinary.uploader.upload_stream(
-      {
-        folder: folder,
-        public_id: publicId,
-      },
-      (error, result) => {
-        if (error) reject(error);
-        else resolve(result as UploadApiResponse);
-      }
-    );
+    const result = await new Promise<UploadApiResponse>((resolve, reject) => {
+      const uploadStream = cloudinary.uploader.upload_stream(
+        {
+          folder: folder,
+          public_id: publicId,
+          transformation: [
+            {
+              width: 1200,
+              crop: 'limit',
+              quality: 'auto:best',
+              fetch_format: 'auto',
+            },
+          ],
+        },
+        (error, result) => {
+          if (error) reject(error);
+          else resolve(result as UploadApiResponse);
+        }
+      );
 
-    uploadStream.end(buffer);
-  });
+      uploadStream.end(buffer);
+    });
 
-  return result;
+    return result;
+  } catch (error) {
+    throw error;
+  }
 }

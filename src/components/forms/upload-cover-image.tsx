@@ -71,7 +71,7 @@ export default function UploadCoverImage({
 
       <div
         className={cn(
-          'border-2 border-dashed border-gray-300 rounded-md px-10 py-10',
+          'border-2 border-dashed border-gray-300 rounded-md hover:border-purple-500 !transition-all !duration-300 ease-in',
           uploadStatus === 'loading' && 'border-green-600',
           uploadStatus === 'error' && 'border-red-600'
         )}
@@ -93,19 +93,19 @@ export default function UploadCoverImage({
               onChange={handleImageUpload}
             />
             <div
-              className='cursor-pointer flex flex-col items-center justify-center'
+              className='p-10 cursor-pointer flex flex-col items-center justify-center'
               onClick={() => {
                 if (!imageInputRef.current) return;
                 imageInputRef.current.click();
               }}
             >
-              <p>
+              <p className='text-sm'>
                 <span className='text-blue-700 font-semibold'>
                   Upload a file{' '}
                 </span>
                 or drag and drop
               </p>
-              <p className='text-sm font-extralight'>PNG, JPG, GIF upto 10mb</p>
+              <p className='text-xs font-extralight'>PNG, JPG, GIF upto 10mb</p>
             </div>
           </div>
         )}

@@ -1,6 +1,6 @@
 import React from 'react';
-import FormInputField from './forms/form-input-field';
-import FormTextareaField from './forms/form-textarea-field';
+import FormInputField from './form-input-field';
+import FormTextareaField from './form-textarea-field';
 import { UseFormReturn } from 'react-hook-form';
 import { formSchema } from '@/declaration';
 import { z } from 'zod';

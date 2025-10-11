@@ -16,8 +16,7 @@ datasource db {
 
 enum BlogImagesStatus {
   IN_USE
-  ORPHANED
-  UPLOADED
+  NOT_IN_USE
 }
 
 model BlogImages {
@@ -25,7 +24,7 @@ model BlogImages {
   userId   Int
   publicId String
   url      String
-  status   BlogImagesStatus @default(ORPHANED)
+  status   BlogImagesStatus @default(IN_USE)
 
   @@map("blog_images")
 }

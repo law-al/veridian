@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import UploadCoverImage from '../upload-cover-image';
+import UploadCoverImage from './upload-cover-image';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -10,10 +10,11 @@ import { formSchema } from '@/declaration';
 import MarkdownEditor from '../editor/editor';
 import { EditorContext } from '@tiptap/react';
 import useBlogEditor from '@/hooks/use-editor';
-import BlogMetaForm from '../blog-meta-form';
+import BlogMetaForm from './blog-meta-form';
+import cleanupRemovedEditorImages from '@/lib/cleanup-removed-editor-images';
 
 export default function BlogForm() {
-  const { editor } = useBlogEditor({});
+  const { editor, uploadedEditorImages } = useBlogEditor({});
 
   const [file, setFile] = useState<File | null>(null);
 
@@ -25,10 +26,12 @@ export default function BlogForm() {
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     console.log(file);
     console.log(values);
     console.log(editor?.getJSON());
+
+    await cleanupRemovedEditorImages({ editor, uploadedEditorImages });
   };
 
   const handleSetFile = (val: File) => {
