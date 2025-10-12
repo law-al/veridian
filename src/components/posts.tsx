@@ -1,5 +1,4 @@
 import React from 'react';
-import AppButton from './app-button';
 import BlogCard from './blog-card';
 import { Button } from './ui/button';
 import Link from 'next/link';
@@ -7,7 +6,7 @@ import Link from 'next/link';
 export default function Posts() {
   return (
     <div className='w-full my-15'>
-      <div className='container mx-auto'>
+      <div className=' mx-20'>
         <div className='flex items-center mb-6'>
           <h2 className='font-semibold text-4xl'>Popular Posts</h2>
           <Button

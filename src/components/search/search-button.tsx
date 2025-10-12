@@ -1,6 +1,6 @@
 'use client';
 
-import { useNavContext } from '@/context/nav-context';
+import { useNavContext } from '@/contexts/nav-context';
 import React from 'react';
 import { FaSearch } from 'react-icons/fa';
 

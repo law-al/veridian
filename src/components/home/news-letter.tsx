@@ -10,7 +10,7 @@ export default function NewsLetter() {
       }}
       className='w-full bg-no-repeat bg-cover bg-top h-[50vh]'
     >
-      <div className='container mx-auto flex flex-col items-center justify-center h-full'>
+      <div className=' mx-20 flex flex-col items-center justify-center h-full'>
         <h2 className='text-white text-3xl font-semibold w-[500px] text-center block mb-4'>
           Get our stories delivered from us to your inbox weekly
         </h2>

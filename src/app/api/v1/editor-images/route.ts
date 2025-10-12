@@ -61,7 +61,7 @@ export async function DELETE(request: NextRequest) {
 
     if (!res) return;
 
-    await prisma.blogImages.updateMany({
+    await prisma.blogImage.updateMany({
       where: {
         publicId: publicId,
         userId: user.id,

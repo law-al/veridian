@@ -5,7 +5,7 @@ export async function saveBlogImage(
   publicId: string,
   url: string
 ) {
-  return prisma.blogImages.create({
+  return prisma.blogImage.create({
     data: {
       userId,
       publicId,

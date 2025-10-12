@@ -19,7 +19,7 @@ enum BlogImagesStatus {
   NOT_IN_USE
 }
 
-model BlogImages {
+model BlogImage {
   id       String           @id @default(cuid())
   userId   Int
   publicId String
@@ -27,4 +27,72 @@ model BlogImages {
   status   BlogImagesStatus @default(IN_USE)
 
   @@map("blog_images")
+}
+
+enum BlogStatus {
+  DRAFT
+  PUBLISHED
+}
+model Post {
+  id String @id @default(cuid())
+  title String
+  slug String
+  content Json
+  excerpt String
+  coverImage String
+  status BlogStatus @default(DRAFT)
+  authorId Int
+  publishedAt DateTime
+
+  categoryId String
+  category Category[]
+  tag Tag[]
+  comment Comment[]
+  like Like[]
+
+
+  @@map("posts")
+
+}
+
+model Category {
+  id String @id @default(cuid())
+  name String
+  slug String
+
+  postId String
+  post Post[]
+
+  @@map("categories")
+}
+
+
+model Tag {
+id String @id @default(cuid())
+name String
+slug String
+
+postId String
+post Post @relation(fields: [postId], references: [id])
+
+@@map("tags")
+}
+
+model Comment{
+  id String @id @default(cuid())
+  content String
+  parentId String?
+
+
+  postId String
+  post Post @relation(fields: [postId], references: [id])
+  authorId Int
+}
+
+model Like {
+  id String @id @default(cuid())
+  userId Int
+
+  postId String
+  post Post @relation(fields: [postId], references: [id])
 }

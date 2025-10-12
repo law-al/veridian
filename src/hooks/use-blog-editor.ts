@@ -49,7 +49,7 @@ export default function useBlogEditor({
     editorProps: {
       attributes: {
         class:
-          'border-2 border-gray-300 rounded-md p-4 placeholder:text-gray-400 focus:border-purple-500 active:border-purple-500 min-h-50',
+          'border-2 border-gray-300 bg-white rounded-md p-4 placeholder:text-gray-400 focus:border-purple-500 active:border-purple-500 min-h-50',
       },
     },
 

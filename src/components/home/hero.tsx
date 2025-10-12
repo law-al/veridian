@@ -8,7 +8,7 @@ export default function Hero() {
       style={{ backgroundImage: "url('/hero-1.png')" }}
       className='w-full h-[80vh] bg-cover bg-bottom bg-no-repeat'
     >
-      <div className='mx-auto container my-6 grid grid-cols-2 gap-5 items-center h-full'>
+      <div className='mx-20 my-6 grid grid-cols-2 gap-5 items-center h-full'>
         <div className=' p-3 space-y-5'>
           <h3 className='text-white uppercase font-semibold'>Featured Post</h3>
           <h2 className='text-white text-6xl capitalize font-semibold'>

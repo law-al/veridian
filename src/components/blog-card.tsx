@@ -30,7 +30,7 @@ export default function BlogCard({
 
   return (
     <article className='w-full max-w-sm group'>
-      <div className='bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden h-full flex flex-col'>
+      <div className='bg-white rounded-xl shadow-lg hover:shadow-2xl !transition-all !duration-300 overflow-hidden h-full flex flex-col'>
         {/* Image Container */}
         <Link
           href={slug}
@@ -41,7 +41,7 @@ export default function BlogCard({
             alt={title}
             fill
             sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-            className='object-cover group-hover:scale-110 transition-transform duration-500'
+            className='object-cover group-hover:scale-110 !transition-transform !duration-500'
             priority={false}
           />
           {/* Category Badge */}
@@ -68,7 +68,7 @@ export default function BlogCard({
 
           {/* Title */}
           <Link href={slug}>
-            <h2 className='text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors duration-200 line-clamp-2 capitalize'>
+            <h2 className='text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors !duration-200 !line-clamp-2 capitalize'>
               {title}
             </h2>
           </Link>
@@ -81,7 +81,7 @@ export default function BlogCard({
           {/* Read More Link */}
           <Link
             href={slug}
-            className='inline-flex items-center gap-2 text-purple-600 font-semibold text-sm hover:gap-3 transition-all duration-300 group/link'
+            className='inline-flex items-center gap-2 text-purple-600 font-semibold text-sm hover:gap-3 transition-all !duration-300 group/link'
           >
             Read More
             <ArrowRight className='w-4 h-4 group-hover/link:translate-x-1 transition-transform' />

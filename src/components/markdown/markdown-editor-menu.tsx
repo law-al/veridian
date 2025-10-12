@@ -6,7 +6,11 @@ import { BlockquoteButton } from '@/components/tiptap-ui/blockquote-button';
 import { CodeBlockButton } from '@/components/tiptap-ui/code-block-button';
 import { ImageUploadButton } from '@/components/tiptap-ui/image-upload-button';
 
-export default function EditorMenu({ editor }: { editor: Editor | null }) {
+export default function MarkdownEditorMenu({
+  editor,
+}: {
+  editor: Editor | null;
+}) {
   if (!editor) {
     return null;
   }

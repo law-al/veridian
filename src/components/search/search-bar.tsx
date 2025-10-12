@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 import React, { useState } from 'react';
 import { FaSearch, FaTimes } from 'react-icons/fa';
 import Search from './search';
-import { useNavContext } from '@/context/nav-context';
+import { useNavContext } from '@/contexts/nav-context';
 import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 
 export default function SearchBar() {

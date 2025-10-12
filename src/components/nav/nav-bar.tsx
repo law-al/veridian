@@ -3,7 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import NavLink from './nav-link';
 import SearchBar from '../search/search-bar';
-import NavProvider from '@/context/nav-context';
+import NavProvider from '@/contexts/nav-context';
 import SearchButton from '../search/search-button';
 import AppButton from '../app-button';
 import { Button } from '../ui/button';
@@ -22,7 +22,7 @@ const navLinks = [
 export default function NavBar() {
   return (
     <nav className='w-full'>
-      <div className='mx-auto container px-4 pr-8 py-2 h-20 flex items-center justify-between'>
+      <div className='mx-20 px-4 pr-8 py-2 h-20 flex items-center justify-between'>
         <Link href='/'>
           <Image src='/logo-1.png' alt='Blog Logo' width={250} height={250} />
         </Link>

@@ -13,4 +13,5 @@ export const formSchema = z.object({
     .max(200, {
       message: 'A short description not be longer than 30 characters.',
     }),
+  category: z.string({ error: 'A category is required' }),
 });
