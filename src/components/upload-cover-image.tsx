@@ -22,7 +22,11 @@ interface UploadError {
   type: 'size' | 'format' | 'upload';
 }
 
-export default function UploadCoverImage() {
+export default function UploadCoverImage({
+  submitting = false,
+}: {
+  submitting?: boolean;
+}) {
   const { coverImgUploadStatus, handleCoverImgUploadStatus, handleSetFile } =
     useCreateBlogContext();
 
@@ -190,7 +194,7 @@ export default function UploadCoverImage() {
               className='hidden'
               ref={imageInputRef}
               onChange={handleImageUpload}
-              disabled={coverImgUploadStatus === 'loading'}
+              disabled={coverImgUploadStatus === 'loading' || submitting}
             />
 
             <div

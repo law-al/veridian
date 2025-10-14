@@ -10,6 +10,7 @@ import { Input } from '../../ui/input';
 import { UseFormReturn } from 'react-hook-form';
 import { formSchema } from '@/declaration';
 import { z } from 'zod';
+import { cn } from '@/lib/tiptap-utils';
 
 export default function FormInputField({
   form,
@@ -17,12 +18,14 @@ export default function FormInputField({
   label,
   placeholder,
   required = true,
+  submitting = false,
 }: {
   form: UseFormReturn<z.infer<typeof formSchema>>;
   name: keyof z.infer<typeof formSchema>;
   label: string;
   placeholder: string;
   required?: boolean;
+  submitting?: boolean;
 }) {
   return (
     <FormField
@@ -36,9 +39,13 @@ export default function FormInputField({
           </FormLabel>
           <FormControl>
             <Input
+              disabled={submitting}
               placeholder={placeholder}
               {...field}
-              className='bg-white !text-base !h-[45px] !border-2 border-gray-300 active:border-purple-500 focus:border-purple-500 focus-within:border-purple-500 focus-visible:border-purple-500 ring-0 hover:ring-0 active:ring-0 focus:ring-0 focus-within:ring-0 focus-visible:ring-0'
+              className={cn(
+                'bg-white !text-base !h-[45px] !border-2 border-gray-300 active:border-purple-500 focus:border-purple-500 focus-within:border-purple-500 focus-visible:border-purple-500 ring-0 hover:ring-0 active:ring-0 focus:ring-0 focus-within:ring-0 focus-visible:ring-0',
+                submitting && 'cursor-not-allowed'
+              )}
             />
           </FormControl>
           <FormMessage />

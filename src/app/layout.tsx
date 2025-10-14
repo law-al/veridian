@@ -3,6 +3,7 @@ import './globals.css';
 import NavBar from '@/components/nav/nav-bar';
 import { sourceSans } from '@/lib/fonts';
 import Footer from '@/components/footer';
+import { Toaster } from '@/components/ui/sonner';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -15,11 +16,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang='en' className='scroll-smooth'>
       <body className={`${sourceSans.className} antialiased`}>
         <NavBar />
         {children}
         <Footer />
+        <Toaster />
       </body>
     </html>
   );

@@ -13,7 +13,7 @@ export default function Search() {
     } else {
       params.delete('search');
     }
-    router.replace(`${pathname}?${params.toString()}`);
+    router.replace(`${pathname}?${params.toString()}#posts`);
   }, 600);
 
   return (

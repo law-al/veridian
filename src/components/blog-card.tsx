@@ -29,7 +29,7 @@ export default function BlogCard({
   };
 
   return (
-    <article className='w-full max-w-sm group'>
+    <article className='w-full group'>
       <div className='bg-white rounded-xl shadow-lg hover:shadow-2xl !transition-all !duration-300 overflow-hidden h-full flex flex-col'>
         {/* Image Container */}
         <Link

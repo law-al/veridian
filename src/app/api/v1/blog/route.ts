@@ -1,68 +1,61 @@
-import { prisma } from '@/lib/prisma';
+import { blogFormSchema } from '@/schema';
 import uploadImages from '@/services/cloudinary/upload-image';
-import { NextRequest } from 'next/server';
+import { NextResponse } from 'next/server';
+import slugify from 'slugify';
+import {
+  addPostToDb,
+  getCategoryFromdb,
+  getTagsFromDb,
+} from '@/services/database/blog.db';
+import { asyncHandler } from '@/lib/async-handler';
+import { purifyHtml } from '@/lib/purify-html';
 
-let user: { id: number; username: string } = {
+const user = {
   id: 1,
   username: 'lawfem',
 };
 
-export async function POST(request: NextRequest) {
+export const POST = asyncHandler(async (request) => {
   const formData = await request.formData();
-  const coverImageFile = formData.get('file') as File | null;
-  const blogTitle = formData.get('title') as string | null;
-  const blogDesc = formData.get('desc') as string | null;
-  const blogCategory = formData.get('category') as string | null;
-  const tags = formData.get('tags') as string | null;
-  const markdownJSON = formData.get('markdownJSON') as string | null;
 
-  console.log(coverImageFile);
+  const rawData = {
+    file: formData.get('file') as File,
+    title: formData.get('title') as string,
+    desc: formData.get('desc') as string,
+    category: formData.get('category') as string,
+    tags: formData.get('tags') as string,
+    markdownHTML: formData.get('markdownJSON') as string,
+  };
 
-  if (!coverImageFile) {
-    return Response.json(
-      {
-        status: 'fail',
-        message: 'A cover image should be provided',
-      },
-      { status: 400 }
-    );
-  }
+  const parsedData = blogFormSchema.parse(rawData);
   const cloudinaryPublicId = `${user.username}_${new Date()
     .toISOString()
     .replace(/[:.]/g, '-')}`;
   const cloudinaryFolder = `veridan-blog/${user.username}/cover-image`;
 
-  const result = await uploadImages(
-    coverImageFile,
+  const { secure_url: coverImage } = await uploadImages(
+    parsedData.file,
     cloudinaryFolder,
     cloudinaryPublicId
   );
 
-  // await prisma.post.create({
-  //   data: {
-  //     authorId: user.id,
-  //     categoryId: blogCategory || 'Not present',
-  //     content: JSON.parse(markdownJSON || 'Not present'),
-  //     coverImage: result.secure_url,
-  //     excerpt: blogDesc || 'Not present',
-  //     publishedAt: new Date(),
-  //     slug: blogTitle?.split(' ').join('-') || 'Not present',
-  //     title: blogTitle || 'Not present',
-  //   },
-  // });
+  const markdownHTML = purifyHtml(parsedData.markdownHTML);
+  const tags = await getTagsFromDb(parsedData.tags);
+  const categoryId = await getCategoryFromdb(parsedData.category);
+  await addPostToDb({
+    userId: user.id,
+    categoryId,
+    content: markdownHTML,
+    coverImage,
+    excerpt: parsedData.desc,
+    publishedAt: new Date(),
+    slug: slugify(parsedData.title, { lower: true }),
+    title: parsedData.title,
+    tags,
+  });
 
-  return Response.json(
-    {
-      status: 'success',
-      message: 'Blog post created successfully',
-      data: {
-        coverImage: result,
-        title: blogTitle,
-        description: blogDesc,
-        category: blogCategory,
-        tags: tags,
-      },
-    },
+  return NextResponse.json(
+    { status: 'success', message: 'Blog post created successfully' },
     { status: 201 }
   );
-}
+});

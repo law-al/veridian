@@ -37,14 +37,13 @@ model Post {
   id String @id @default(cuid())
   title String
   slug String
-  content Json
+  content String
   excerpt String
   coverImage String
   status BlogStatus @default(DRAFT)
   authorId Int
   publishedAt DateTime
 
-  categoryId String
   category Category[]
   tag Tag[]
   comment Comment[]
@@ -60,7 +59,6 @@ model Category {
   name String
   slug String
 
-  postId String
   post Post[]
 
   @@map("categories")
@@ -70,10 +68,9 @@ model Category {
 model Tag {
 id String @id @default(cuid())
 name String
-slug String
+slug String @unique
 
-postId String
-post Post @relation(fields: [postId], references: [id])
+post Post[]
 
 @@map("tags")
 }

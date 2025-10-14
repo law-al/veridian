@@ -5,7 +5,7 @@ import { UseFormReturn } from 'react-hook-form';
 import { formSchema } from '@/declaration';
 import { z } from 'zod';
 import { FormSelectField } from '../shared/form-select-field';
-import TagField from '../../blog-tag-field';
+import TagField from '../../tag-input-field';
 import { useCreateBlogContext } from '@/contexts/create-blog-context';
 
 const BlogCategory = [
@@ -57,7 +57,7 @@ const BlogCategory = [
 ];
 
 export default function BlogMetaForm({}) {
-  const { form } = useCreateBlogContext();
+  const { form, submitting } = useCreateBlogContext();
 
   return (
     <div className='bg-purple-50/50 p-6 space-y-8'>
@@ -66,6 +66,7 @@ export default function BlogMetaForm({}) {
         name='title'
         label='Blog Title'
         placeholder='Enter blog title'
+        submitting={submitting}
       />
 
       <FormTextareaField
@@ -73,6 +74,7 @@ export default function BlogMetaForm({}) {
         name='shortDescription'
         label='Short description'
         placeholder='Enter a short description (max: 200)'
+        submitting={submitting}
       />
 
       <FormSelectField
@@ -81,9 +83,10 @@ export default function BlogMetaForm({}) {
         label='Blog Category'
         placeholder='Select a Category'
         items={BlogCategory}
+        submitting={submitting}
       />
 
-      <TagField />
+      <TagField submitting={submitting} />
     </div>
   );
 }

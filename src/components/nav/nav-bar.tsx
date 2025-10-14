@@ -28,7 +28,7 @@ export default function NavBar() {
         </Link>
 
         <NavProvider>
-          <SearchBar />
+          {/* <SearchBar /> */}
 
           <div className='flex items-center gap-6'>
             <div className='space-x-6'>
@@ -36,7 +36,7 @@ export default function NavBar() {
                 <NavLink key={nav.name} href={nav.href} navName={nav.name} />
               ))}
             </div>
-            <SearchButton />
+            {/* <SearchButton /> */}
 
             <Button
               asChild

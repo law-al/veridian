@@ -4,8 +4,13 @@ import { XCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCreateBlogContext } from '@/contexts/create-blog-context';
 import { Button } from './ui/button';
+import { cn } from '@/lib/tiptap-utils';
 
-export default function TagField({}) {
+export default function TagField({
+  submitting = false,
+}: {
+  submitting?: boolean;
+}) {
   const { tags, handleSetTags } = useCreateBlogContext();
 
   const [inputTags, setInputTags] = useState<string>('');
@@ -37,15 +42,24 @@ export default function TagField({}) {
             id='tags'
             type='text'
             value={inputTags}
+            disabled={submitting}
             onChange={(e) => setInputTags(e.target.value.toLowerCase())}
             onKeyDown={handleSetTag}
-            className='bg-white px-4 w-full !text-base rounded-md !h-[45px] border-2 border-gray-300 active:border-purple-500 focus:border-purple-500 focus-within:border-purple-500 focus-visible:!border-purple-500 ring-0 hover:ring-0 active:ring-0 focus:ring-0 focus-within:ring-0 focus-visible:ring-0 outline-none focus:outline-none'
+            placeholder='Provide tags'
+            className={cn(
+              'bg-white px-4 w-full !text-base rounded-md !h-[45px] border-2 border-gray-300 active:border-purple-500 focus:border-purple-500 focus-within:border-purple-500 focus-visible:!border-purple-500 ring-0 hover:ring-0 active:ring-0 focus:ring-0 focus-within:ring-0 focus-visible:ring-0 outline-none focus:outline-none',
+              submitting && 'cursor-not-allowed'
+            )}
           />
         </div>
         <Button
           type='button'
+          disabled={submitting}
           onClick={addTag}
-          className='!h-[45px] w-30 !rounded-md cursor-pointer !bg-purple-600 !text-white hover:scale-105 hover:bg-purple-500 !transition !duration-300 ease-in-out'
+          className={cn(
+            '!h-[45px] w-30 !rounded-md cursor-pointer !bg-purple-600 !text-white hover:scale-105 hover:bg-purple-500 !transition !duration-300 ease-in-out',
+            submitting && 'cursor-not-allowed !bg-purple-300'
+          )}
         >
           Add Tags
         </Button>
