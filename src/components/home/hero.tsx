@@ -1,42 +1,70 @@
+'use client';
+
 import React from 'react';
-import AppButton from '../app-button';
 import Image from 'next/image';
+import { Button } from '../ui/button';
+import { playfair } from '@/lib/fonts';
+import { motion } from 'framer-motion';
+import { Carousel, CarouselContent, CarouselItem } from '../ui/carousel';
+import Featured from './featured';
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6 },
+  },
+};
 
 export default function Hero() {
   return (
-    <section
-      style={{ backgroundImage: "url('/hero-1.png')" }}
-      className='w-full h-[80vh] bg-cover bg-bottom bg-no-repeat'
-    >
+    <section className='mt-10 w-full h-[80vh]'>
       <div className='grid grid-cols-2 gap-5 items-center h-full'>
-        <div className=' p-3 space-y-5'>
-          <h3 className='text-white uppercase font-semibold'>Featured Post</h3>
-          <h2 className='text-white text-6xl capitalize font-semibold'>
-            How Ai Will Change The World
-          </h2>
-          <p className='text-white block w-[85%]'>
+        <motion.div
+          className='p-3 space-y-7'
+          variants={containerVariants}
+          initial='hidden'
+          animate='visible'
+        >
+          <motion.h1
+            className={`${playfair.className} text-charcoal capitalize font-semibold tracking-tight text-8xl`}
+            variants={itemVariants}
+          >
+            Where curiosity meets content
+          </motion.h1>
+          <motion.p
+            className='text-charcoal block w-[85%]'
+            variants={itemVariants}
+          >
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laborum
             blanditiis officia neque dolore non dolores veritatis. Quia
             architecto neque accusantium saepe alias quaerat molestias quibusdam
             optio dolorum non, error laborum facere. Officiis reiciendis ullam
             enim magnam repudiandae delectus magni libero.
-          </p>
+          </motion.p>
+          <motion.div variants={itemVariants}>
+            <Button
+              size='lg'
+              className='!bg-blue-main !h-13 cursor-pointer hover:bg-[#93C5FD] !transition-all duration-300'
+            >
+              Explore Articles
+            </Button>
+          </motion.div>
+        </motion.div>
 
-          <AppButton
-            type='outline'
-            text='Read More'
-            className='!bg-white rounded-md hover:!text-purple-500'
-          />
-        </div>
-        <div className='h-full p-8'>
-          <Image
-            src='https://images.unsplash.com/photo-1697577418970-95d99b5a55cf?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YWl8ZW58MHx8MHx8fDA%3D'
-            alt='AI changing the world'
-            className='w-full h-full object-cover rounded-md'
-            width={400}
-            height={400}
-          />
-        </div>
+        <Featured />
       </div>
     </section>
   );

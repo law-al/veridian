@@ -50,7 +50,7 @@ export default function NavBar() {
           <Search />
           <Button
             size='lg'
-            className='!h-full !bg-[#4169E1] cursor-pointer hover:bg-[#93C5FD] !transition-all duration-300'
+            className='!h-full !bg-blue-main cursor-pointer hover:bg-[#93C5FD] !transition-all duration-300'
           >
             Subscribe
           </Button>
