@@ -2,11 +2,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import NavLink from './nav-link';
-import SearchBar from '../search/search-bar';
-import NavProvider from '@/contexts/nav-context';
-import SearchButton from '../search/search-button';
 import AppButton from '../app-button';
 import { Button } from '../ui/button';
+import Search from '../search/search';
 
 const navLinks = [
   {
@@ -22,30 +20,41 @@ const navLinks = [
 export default function NavBar() {
   return (
     <nav className='w-full'>
-      <div className='mx-20 px-4 pr-8 py-2 h-20 flex items-center justify-between'>
-        <Link href='/'>
-          <Image src='/logo-1.png' alt='Blog Logo' width={250} height={250} />
-        </Link>
+      <div className='py-2 h-20 flex items-center justify-between'>
+        <div className='flex items-center gap-10'>
+          <Link href='/'>
+            <Image
+              src='/logo.png'
+              alt='Blog Logo'
+              width={100}
+              height={50}
+              className='w-40'
+            />
+          </Link>
 
-        <NavProvider>
-          {/* <SearchBar /> */}
-
-          <div className='flex items-center gap-6'>
-            <div className='space-x-6'>
-              {navLinks.map((nav) => (
-                <NavLink key={nav.name} href={nav.href} navName={nav.name} />
-              ))}
-            </div>
-            {/* <SearchButton /> */}
-
-            <Button
-              asChild
-              className={`cursor-pointer rounded-xs text-base !px-6 py-6 transition-all 200ms text-white bg-purple-600 hover:bg-purple-500 border border-transparent`}
-            >
-              <Link href='/blog/add'>Add Blog</Link>
-            </Button>
+          <div className='flex items-center gap-3'>
+            {navLinks.map((navLink) => {
+              return (
+                <NavLink
+                  key={navLink.name}
+                  navName={navLink.name}
+                  href={navLink.href}
+                  className='font-semibold'
+                />
+              );
+            })}
           </div>
-        </NavProvider>
+        </div>
+
+        <div className='flex gap-2 items-center h-[50px]'>
+          <Search />
+          <Button
+            size='lg'
+            className='!h-full !bg-[#4169E1] cursor-pointer hover:bg-[#93C5FD] !transition-all duration-300'
+          >
+            Subscribe
+          </Button>
+        </div>
       </div>
     </nav>
   );

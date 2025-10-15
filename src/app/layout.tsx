@@ -4,6 +4,7 @@ import NavBar from '@/components/nav/nav-bar';
 import { sourceSans } from '@/lib/fonts';
 import Footer from '@/components/footer';
 import { Toaster } from '@/components/ui/sonner';
+import LenisProvider from '@/contexts/lenis-context';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,10 +18,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' className='scroll-smooth'>
-      <body className={`${sourceSans.className} antialiased`}>
-        <NavBar />
-        {children}
-        <Footer />
+      <body
+        className={`${sourceSans.className} antialiased w-[1400px] mx-auto`}
+      >
+        <LenisProvider>
+          <NavBar />
+          {children}
+          <Footer />
+        </LenisProvider>
         <Toaster />
       </body>
     </html>

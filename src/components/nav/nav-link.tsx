@@ -21,9 +21,9 @@ export default function NavLink({
     <Link
       href={href}
       className={cn(
-        `text-lg mb-1 hover:text-purple-400 capitalize text-gray-600 border-b-2 border-transparent ${poppins.className}`,
+        `text-lg text-charcoal mb-1 hover:text-charcoal capitalize border-b-2 border-transparent ${poppins.className}`,
         className,
-        pathname === href && 'text-purple-400 border-b-2 border-current'
+        pathname === href && 'text-dark-charcoal border-b-2 border-current'
       )}
     >
       {navName}
