@@ -106,7 +106,10 @@ export default function BlogForm() {
   return (
     <>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className='space-y-8 w-full'
+        >
           <UploadCoverImage />
 
           <BlogMetaForm />
@@ -126,7 +129,7 @@ export default function BlogForm() {
               disabled={submitting}
               type='submit'
               className={cn(
-                'w-[180px] h-12 cursor-pointer bg-purple-600 hover:bg-purple-500 hover:scale-102 !transition-all !duration-700 ease-out',
+                'w-[180px] h-12 cursor-pointer bg-blue-main hover:bg-blue-main/80 hover:scale-102 !transition-all !duration-700 ease-out',
                 submitting && 'cursor-not-allowed'
               )}
             >

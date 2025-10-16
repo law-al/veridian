@@ -18,7 +18,7 @@ export default function MarkdownEditor() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className='bg-purple-50/50 p-6 space-y-8'
+      className='bg-blue-sec/5 p-6 space-y-8'
     >
       <EditorContext.Provider value={{ editor }}>
         <MarkdownEditorMenu editor={editor} />

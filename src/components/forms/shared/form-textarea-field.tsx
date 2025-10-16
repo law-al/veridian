@@ -42,7 +42,7 @@ export default function FormTextareaField({
               disabled={submitting}
               placeholder={placeholder}
               className={cn(
-                'bg-white resize-none !text-base !h-[45px] !border-2 border-gray-300 active:border-purple-500 focus:border-purple-500focus-within:ring-0 focus-visible:border-purple-500 ring-0 hover:ring-0 active:ring-0 focus:ring-0 focus-within:ring-0 focus-visible:ring-0',
+                'bg-white resize-none !text-base !h-[45px] !border-2 border-gray-300 active:border-blue-main focus:border-blue-main focus-visible:border-blue-main ring-0 hover:ring-0 active:ring-0 focus:ring-0 focus-within:ring-0 focus-visible:ring-0',
                 submitting && 'cursor-not-allowed'
               )}
               cols={30}

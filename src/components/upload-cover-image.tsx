@@ -154,7 +154,7 @@ export default function UploadCoverImage({
   };
 
   return (
-    <div className='bg-purple-50/50 p-6 rounded-lg'>
+    <div className='bg-blue-sec/5 p-6 rounded-lg'>
       <h4
         className={cn(
           'font-semibold mb-5 text-lg',
@@ -167,11 +167,11 @@ export default function UploadCoverImage({
       <div
         className={cn(
           'border-2 border-dashed rounded-lg transition-all duration-300 ease-in-out overflow-hidden bg-white',
-          !coverImage && 'hover:border-purple-500 hover:bg-purple-50/30',
+          !coverImage && 'hover:border-blue-main hover:bg-blue-500/5',
           coverImgUploadStatus === 'loading' &&
             'border-green-500 bg-green-50/30',
           coverImgUploadStatus === 'error' && 'border-red-500 bg-red-50/30',
-          isDragging && 'border-purple-600 bg-purple-100/50 scale-[1.02]',
+          isDragging && 'border-blue-500 bg-blue-500/50 scale-[1.02]',
           coverImgUploadStatus === 'idle' && !coverImage && 'border-gray-300'
         )}
         onDragEnter={handleDragEnter}
@@ -212,20 +212,20 @@ export default function UploadCoverImage({
               <div
                 className={cn(
                   'p-4 rounded-full transition-colors',
-                  isDragging ? 'bg-purple-600' : 'bg-purple-100'
+                  isDragging ? 'bg-blue-500/20' : 'bg-blue-500/10'
                 )}
               >
                 <Upload
                   className={cn(
                     'w-8 h-8 transition-colors',
-                    isDragging ? 'text-white' : 'text-purple-600'
+                    isDragging ? 'text-blue-600' : 'text-blue-500'
                   )}
                 />
               </div>
 
               <div className='text-center'>
                 <p className='text-sm mb-1'>
-                  <span className='text-purple-600 font-semibold'>
+                  <span className='text-blue-600 font-semibold'>
                     Click to upload
                   </span>{' '}
                   or drag and drop

@@ -47,7 +47,7 @@ export default function TagField({
             onKeyDown={handleSetTag}
             placeholder='Provide tags'
             className={cn(
-              'bg-white px-4 w-full !text-base rounded-md !h-[45px] border-2 border-gray-300 active:border-purple-500 focus:border-purple-500 focus-within:border-purple-500 focus-visible:!border-purple-500 ring-0 hover:ring-0 active:ring-0 focus:ring-0 focus-within:ring-0 focus-visible:ring-0 outline-none focus:outline-none',
+              'bg-white px-4 w-full !text-base rounded-md !h-[45px] border-2 border-gray-300 active:border-blue-main focus:border-blue-main focus-within:border-blue-main focus-visible:!border-blue-main ring-0 hover:ring-0 active:ring-0 focus:ring-0 focus-within:ring-0 focus-visible:ring-0 outline-none focus:outline-none',
               submitting && 'cursor-not-allowed'
             )}
           />
@@ -57,7 +57,7 @@ export default function TagField({
           disabled={submitting}
           onClick={addTag}
           className={cn(
-            '!h-[45px] w-30 !rounded-md cursor-pointer !bg-purple-600 !text-white hover:scale-105 hover:bg-purple-500 !transition !duration-300 ease-in-out',
+            '!h-[45px] w-30 !rounded-md cursor-pointer !bg-blue-main !text-white hover:scale-105 hover:bg-blue-main !transition !duration-300 ease-in-out',
             submitting && 'cursor-not-allowed !bg-purple-300'
           )}
         >
@@ -74,7 +74,7 @@ export default function TagField({
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.8, x: -20 }}
                 transition={{ duration: 0.2 }}
-                className='bg-purple-600 px-2 py-1 flex items-center gap-2 text-white rounded-lg w-fit'
+                className='bg-blue-main px-2 py-1 flex items-center gap-2 text-white rounded-lg w-fit'
               >
                 <p>{tag}</p>
                 <XCircle
