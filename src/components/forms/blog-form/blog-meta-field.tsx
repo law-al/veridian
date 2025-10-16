@@ -5,7 +5,7 @@ import { UseFormReturn } from 'react-hook-form';
 import { formSchema } from '@/declaration';
 import { z } from 'zod';
 import { FormSelectField } from '../shared/form-select-field';
-import TagField from '../../tag-input-field';
+import TagField from './tag-input-field';
 import { useCreateBlogContext } from '@/contexts/create-blog-context';
 
 const BlogCategory = [
@@ -56,7 +56,7 @@ const BlogCategory = [
   },
 ];
 
-export default function BlogMetaForm({}) {
+export default function BlogMetaField({}) {
   const { form, submitting } = useCreateBlogContext();
 
   return (

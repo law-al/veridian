@@ -3,7 +3,7 @@ import React, { KeyboardEvent, useRef, useState } from 'react';
 import { XCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useCreateBlogContext } from '@/contexts/create-blog-context';
-import { Button } from './ui/button';
+import { Button } from '../../ui/button';
 import { cn } from '@/lib/tiptap-utils';
 
 export default function TagField({

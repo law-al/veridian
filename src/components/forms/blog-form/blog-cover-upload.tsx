@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React, { useCallback, useRef, useState } from 'react';
 import { TiTimes } from 'react-icons/ti';
 import { Upload, AlertCircle, CheckCircle2 } from 'lucide-react';
-import UploadedImagePreview from './uploaded-image-preview';
+import UploadedImagePreview from '../../uploaded-image-preview';
 import { cn } from '@/lib/utils';
 import { useCreateBlogContext } from '@/contexts/create-blog-context';
 
@@ -22,7 +22,7 @@ interface UploadError {
   type: 'size' | 'format' | 'upload';
 }
 
-export default function UploadCoverImage({
+export default function BlogCoverUpload({
   submitting = false,
 }: {
   submitting?: boolean;

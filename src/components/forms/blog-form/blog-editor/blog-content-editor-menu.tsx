@@ -6,7 +6,7 @@ import { BlockquoteButton } from '@/components/tiptap-ui/blockquote-button';
 import { CodeBlockButton } from '@/components/tiptap-ui/code-block-button';
 import { ImageUploadButton } from '@/components/tiptap-ui/image-upload-button';
 
-export default function MarkdownEditorMenu({
+export default function BlogContentEditorMenu({
   editor,
 }: {
   editor: Editor | null;

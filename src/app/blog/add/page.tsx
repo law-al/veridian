@@ -1,4 +1,4 @@
-import BlogForm from '@/components/forms/blog/create-blog-form';
+import BlogForm from '@/components/forms/blog-form/blog-form';
 import { poppins } from '@/lib/fonts';
 import React from 'react';
 import { CreateBlogProvider } from '@/contexts/create-blog-context';

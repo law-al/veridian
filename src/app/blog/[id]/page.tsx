@@ -1,15 +1,44 @@
 import AuthorProfile from '@/components/author-profile';
-import BlogContent from '@/components/ui/blog-content';
-import BlogDetails from '@/components/ui/blog-details';
-import BlogMeta from '@/components/ui/blog-meta';
+import BlogContent from '@/components/blog-content';
+import BlogDetails from '@/components/blog-details';
+import BlogMeta from '@/components/blog-meta';
+import { prisma } from '@/lib/prisma';
+import { notFound } from 'next/navigation';
 
-export default function Page() {
+export async function generateStaticParams() {
+  const posts = await prisma.post.findMany({
+    select: {
+      id: true,
+    },
+    take: 20,
+  });
+
+  const ids = posts.map((post) => {
+    return { id: post.id };
+  });
+
+  return ids;
+}
+
+export default async function Page({ params }: { params: { id: string } }) {
+  const post = await prisma.post.findFirst({
+    where: { id: params.id },
+  });
+
+  if (!post) {
+    notFound();
+  }
+
   return (
     <section className='mt-10 w-[1200px] mx-auto'>
       <AuthorProfile />
       <BlogDetails>
-        <BlogMeta />
-        <BlogContent />
+        <BlogMeta
+          excerpt={post.excerpt}
+          image={post.coverImage}
+          title={post.title}
+        />
+        <BlogContent htmlContent={post.content} />
       </BlogDetails>
     </section>
   );

@@ -20,7 +20,7 @@ export default function BlogCard({
   readTime = '5 min read',
   excerpt = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias, maxime deleniti. Cum ab iste ex ipsa non quod dolorem doloribus nemo earum nesciunt voluptate, recusandae minima praesentium quaerat. Debitis, ratione.',
   imageUrl = 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170',
-  slug = '/blog/2',
+  slug = '/blog/cmgp5mzof000194wgk9nsk98r',
 }: BlogCardProps) {
   const collapseText = (text: string, maxLength: number = 140): string => {
     return text.length > maxLength
