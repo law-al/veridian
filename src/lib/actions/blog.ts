@@ -10,7 +10,6 @@ import {
 } from '@/services/database/blog.db';
 import slugify from 'slugify';
 import { revalidatePath } from 'next/cache';
-import { redirect } from 'next/navigation';
 
 export type ActionState = {
   success: boolean;

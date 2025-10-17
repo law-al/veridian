@@ -34,6 +34,7 @@ export default function BlogForm() {
     handleCoverImgUploadStatus,
   } = useCreateBlogContext();
 
+  // CHECK SUCCESS STATUS
   useEffect(() => {
     if (state?.success) {
       toast.success('Blog post created', {
@@ -45,7 +46,7 @@ export default function BlogForm() {
       handleFormReset();
       handleEditorReset();
 
-      router.push('/blog');
+      router.push('/articles');
     } else if (state && !state.success) {
       toast.error('Error creating blog post', {
         description: state.error || state.message,
@@ -53,15 +54,20 @@ export default function BlogForm() {
     }
   }, [state]);
 
+  // HANDLE PENDING EVENT
   useEffect(() => {
     handleSubmitting(pending);
   }, [pending]);
 
+  // HANDLE SUBMIT EVENT
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     if (!file) {
       handleCoverImgUploadStatus('error');
       return;
     }
+
+    // CLEAN UNUSED EDITOR IMAGE
+    await cleanupRemovedEditorImages({ editor, uploadedEditorImages });
 
     const formData = new FormData();
     formData.append('file', file);
@@ -71,11 +77,10 @@ export default function BlogForm() {
     formData.append('tags', JSON.stringify([...tags]));
     formData.append('markdownJSON', editor?.getHTML() as string);
 
+    // ACTIONS
     startTransition(() => {
       formAction(formData);
     });
-
-    await cleanupRemovedEditorImages({ editor, uploadedEditorImages });
   };
 
   return (
@@ -92,12 +97,6 @@ export default function BlogForm() {
           <BlogContentEditor />
 
           <BlogFormActions />
-
-          {form.formState.errors.root && (
-            <p className='text-red-500 text-sm'>
-              {form.formState.errors.root.message}
-            </p>
-          )}
         </form>
       </Form>
     </>

@@ -18,9 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en' className='scroll-smooth'>
-      <body
-        className={`${sourceSans.className} antialiased w-[1400px] mx-auto`}
-      >
+      <body className={`${sourceSans.className} antialiased mx-30`}>
         <LenisProvider>
           <NavBar />
           {children}

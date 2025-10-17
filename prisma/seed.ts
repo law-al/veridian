@@ -1,10 +1,15 @@
 import { Prisma } from '@/generated/prisma';
 import { prisma } from '@/lib/prisma';
-import category from './data';
+import { categorySeeds, tagSeeds } from './data';
 
 const main = async () => {
   await prisma.category.createMany({
-    data: category,
+    data: categorySeeds,
+    skipDuplicates: true,
+  });
+
+  await prisma.tag.createMany({
+    data: tagSeeds,
     skipDuplicates: true,
   });
 

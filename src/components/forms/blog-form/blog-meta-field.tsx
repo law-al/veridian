@@ -60,7 +60,7 @@ export default function BlogMetaField({}) {
   const { form, submitting } = useCreateBlogContext();
 
   return (
-    <div className='bg-blue-sec/5 p-6 space-y-8 rounded-md w-[1400px]'>
+    <div className='bg-blue-sec/5 p-6 space-y-8 rounded-md'>
       <FormInputField
         form={form}
         name='title'

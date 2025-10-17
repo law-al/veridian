@@ -56,7 +56,7 @@ export default function CategoryPreview({
             key={category}
             onClick={() => {
               setSelectedCategory(category);
-              router.push(`/?${setParams(category)}`);
+              router.replace(`/?${setParams(category)}`, { scroll: false });
             }}
             className={cn(
               'border-2 border-transparent bg-[#B0E0E6] capitalize text-blue-500 w-fit rounded-xl py-1 px-4 cursor-pointer !transition-all duration-300',

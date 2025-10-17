@@ -8,21 +8,21 @@ import { notFound } from 'next/navigation';
 export async function generateStaticParams() {
   const posts = await prisma.post.findMany({
     select: {
-      id: true,
+      slug: true,
     },
     take: 20,
   });
 
   const ids = posts.map((post) => {
-    return { id: post.id };
+    return { slug: post.slug };
   });
 
   return ids;
 }
 
-export default async function Page({ params }: { params: { id: string } }) {
+export default async function Page({ params }: { params: { slug: string } }) {
   const post = await prisma.post.findFirst({
-    where: { id: params.id },
+    where: { slug: params.slug },
   });
 
   if (!post) {

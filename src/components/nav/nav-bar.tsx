@@ -5,6 +5,8 @@ import NavLink from './nav-link';
 import AppButton from '../app-button';
 import { Button } from '../ui/button';
 import Search from '../search/search';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { PenSquareIcon } from 'lucide-react';
 
 const navLinks = [
   {
@@ -12,8 +14,8 @@ const navLinks = [
     name: 'Home',
   },
   {
-    href: '/blog',
-    name: 'Blog',
+    href: '/articles',
+    name: 'Article',
   },
 ];
 
@@ -47,6 +49,14 @@ export default function NavBar() {
         </div>
 
         <div className='flex gap-2 items-center h-[50px]'>
+          <Link
+            href='/articles/write'
+            className='flex items-center gap-1 w-[80px] mr-6'
+          >
+            <PenSquareIcon className='size-7' />
+            <p className='text-lg'>Write</p>
+          </Link>
+
           <Search />
           <Button
             size='lg'
@@ -54,6 +64,11 @@ export default function NavBar() {
           >
             Subscribe
           </Button>
+
+          <Avatar className='size-10'>
+            <AvatarImage src='https://github.com/shadcn.png' />
+            <AvatarFallback>CN</AvatarFallback>
+          </Avatar>
         </div>
       </div>
     </nav>
