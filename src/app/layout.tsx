@@ -1,10 +1,16 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import NavBar from '@/components/nav/nav-bar';
 import { sourceSans } from '@/lib/fonts';
-import Footer from '@/components/footer';
 import { Toaster } from '@/components/ui/sonner';
 import LenisProvider from '@/contexts/lenis-context';
+import {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,15 +23,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' className='scroll-smooth'>
-      <body className={`${sourceSans.className} antialiased mx-30`}>
-        <LenisProvider>
-          <NavBar />
-          {children}
-          <Footer />
-        </LenisProvider>
-        <Toaster />
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang='en' className='scroll-smooth'>
+        <body className={`${sourceSans.className} antialiased mx-30`}>
+          <LenisProvider>{children}</LenisProvider>
+          <Toaster />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

@@ -5,18 +5,20 @@ import { usePathname, useSearchParams, useRouter } from 'next/navigation';
 import { useDebouncedCallback, useDebounce } from 'use-debounce';
 
 export default function Search() {
-  const pathname = usePathname();
   const searchParams = useSearchParams();
   const router = useRouter();
   const params = new URLSearchParams(searchParams);
 
   const handleSearch = useDebouncedCallback((searchText: string) => {
-    if (searchText) {
+    if (searchText && searchText.length > 2) {
+      params.delete('category');
+      params.delete('sort');
+      params.delete('page');
       params.set('search', searchText);
-    } else {
+    } else if (!searchText || searchText.length < 3) {
       params.delete('search');
     }
-    router.replace(`${pathname}?${params.toString()}#posts`);
+    router.replace(`/articles?${params.toString()}`);
   }, 600);
 
   return (

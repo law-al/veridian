@@ -2,11 +2,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import NavLink from './nav-link';
-import AppButton from '../app-button';
 import { Button } from '../ui/button';
 import Search from '../search/search';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { PenSquareIcon } from 'lucide-react';
+import { auth, currentUser } from '@clerk/nextjs/server';
+import { SignInButton, UserButton } from '@clerk/nextjs';
+import SignUpButton from '../buttons/sign-up';
+import SubscribeButton from '../buttons/subscribe';
 
 const navLinks = [
   {
@@ -19,7 +22,9 @@ const navLinks = [
   },
 ];
 
-export default function NavBar() {
+export default async function NavBar() {
+  const { isAuthenticated } = await auth();
+  const user = await currentUser();
   return (
     <nav className='w-full'>
       <div className='py-2 h-20 flex items-center justify-between'>
@@ -48,28 +53,43 @@ export default function NavBar() {
           </div>
         </div>
 
-        <div className='flex gap-2 items-center h-[50px]'>
-          <Link
-            href='/articles/write'
-            className='flex items-center gap-1 w-[80px] mr-6'
-          >
-            <PenSquareIcon className='size-7' />
-            <p className='text-lg'>Write</p>
-          </Link>
+        {isAuthenticated ? (
+          <div className='flex gap-2 items-center h-[50px]'>
+            <Link
+              href='/articles/write'
+              className='flex items-center gap-1 w-[80px] mr-6'
+            >
+              <PenSquareIcon className='size-7' />
+              <p className='text-lg'>Write</p>
+            </Link>
 
-          <Search />
-          <Button
-            size='lg'
-            className='!h-full !bg-blue-main cursor-pointer hover:bg-[#93C5FD] !transition-all duration-300'
-          >
-            Subscribe
-          </Button>
+            <Search />
+            <SubscribeButton />
 
-          <Avatar className='size-10'>
-            <AvatarImage src='https://github.com/shadcn.png' />
-            <AvatarFallback>CN</AvatarFallback>
-          </Avatar>
-        </div>
+            <UserButton
+              appearance={{
+                elements: {
+                  avatarBox: 'size-13',
+                  avatarImage: 'size-13',
+                  avatarFallback: 'size-13',
+                  userButtonPopoverCard: 'w-[300px]',
+                  userButtonPopoverCardHeader:
+                    'flex items-center justify-between',
+                  userButtonPopoverCardHeaderTitle: 'text-lg font-semibold',
+                  userButtonPopoverCardHeaderDescription:
+                    'text-sm text-gray-500',
+                  userButtonPopoverCardContent:
+                    'flex items-center justify-between',
+                },
+              }}
+            />
+          </div>
+        ) : (
+          <div className='flex gap-2 items-center h-[50px]'>
+            <SignInButton />
+            <SignUpButton />
+          </div>
+        )}
       </div>
     </nav>
   );

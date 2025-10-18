@@ -48,10 +48,7 @@ const sort: SelectItems[] = [
       { value: 'newest', item: 'Newest first' },
       { value: 'oldest', item: 'Oldest first' },
       { value: 'most_liked', item: 'Most liked' },
-      { value: 'most_viewed', item: 'Most viewed' },
       { value: 'most_commented', item: 'Most commented' },
-      { value: 'alphabetical_asc', item: 'Title A–Z' },
-      { value: 'alphabetical_desc', item: 'Title Z–A' },
     ],
   },
 ];
@@ -107,6 +104,7 @@ export default function Filters() {
 
       if (val) {
         params.set(type, val);
+        params.set('page', '1');
       } else {
         params.delete(type);
       }
