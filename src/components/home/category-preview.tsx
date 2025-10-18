@@ -4,14 +4,7 @@ import { cn } from '@/lib/utils';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import React, { useCallback, useEffect, useState } from 'react';
 
-const categories = [
-  'all',
-  'technology',
-  'health',
-  'business',
-  'design',
-  'culture',
-];
+const categories = ['all', 'tech', 'travel', 'parenting', 'food', 'finance'];
 
 export default function CategoryPreview({
   children,

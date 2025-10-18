@@ -1,4 +1,4 @@
-import { ArticlePagination } from '@/components/article-pagination';
+import { PaginationWithLinks } from '@/components/pagination-with-links';
 import Articles from '@/components/articles';
 import BlogMode from '@/components/blog-mode';
 import Filters from '@/components/filters';
@@ -22,7 +22,7 @@ export default function Page() {
         <Articles />
       </BlogModeProvider>
       <div className='mt-10'>
-        <ArticlePagination />
+        <PaginationWithLinks page={1} pageSize={20} totalCount={50} />
       </div>
     </section>
   );

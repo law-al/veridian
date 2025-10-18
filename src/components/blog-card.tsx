@@ -23,7 +23,7 @@ export default function BlogCard({
   readTime = '5 min read',
   excerpt = 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Molestias, maxime deleniti. Cum ab iste ex ipsa non quod dolorem doloribus nemo earum nesciunt voluptate, recusandae minima praesentium quaerat. Debitis, ratione.',
   imageUrl = 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1170',
-  slug = '/articles/how-to-use-cloudinary',
+  slug = 'how-to-use-cloudinary',
   mode = 'grid',
 }: BlogCardProps) {
   return (
@@ -38,7 +38,7 @@ export default function BlogCard({
       >
         {/* Image Container */}
         <Link
-          href={slug}
+          href={`/articles/${slug}`}
           className={cn(
             'relative overflow-hidden bg-gray-100 block flex-shrink-0',
             mode === 'grid' && 'w-full h-56 mb-4 rounded-md',
@@ -87,7 +87,7 @@ export default function BlogCard({
             </div>
 
             {/* Title */}
-            <Link href={slug}>
+            <Link href={`/articles/${slug}`}>
               <h2 className='text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-200 line-clamp-2 capitalize'>
                 {title}
               </h2>
@@ -103,7 +103,7 @@ export default function BlogCard({
 
           {/* Read More Link */}
           <Link
-            href={slug}
+            href={`/articles/${slug}`}
             className='inline-flex items-center gap-2 text-blue-600 font-semibold text-sm hover:gap-3 transition-all duration-300 group/link mt-auto'
           >
             Read More

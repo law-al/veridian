@@ -1,24 +1,92 @@
-import { Prisma } from '@/generated/prisma';
-import { prisma } from '@/lib/prisma';
-import { categorySeeds, tagSeeds } from './data';
+import { PrismaClient } from '@/generated/prisma';
+import { categorySeeds, tagSeeds, postSeeds } from './data';
 
-const main = async () => {
-  await prisma.category.createMany({
-    data: categorySeeds,
-    skipDuplicates: true,
-  });
+const prisma = new PrismaClient();
 
-  await prisma.tag.createMany({
-    data: tagSeeds,
-    skipDuplicates: true,
-  });
+interface Data {
+  name: string;
+  slug: string;
+}
 
-  console.log('Database has been seeded');
-};
+async function main() {
+  console.log('🌱 Starting seed...');
+
+  // Clear existing data (optional)
+  await prisma.comment.deleteMany();
+  await prisma.like.deleteMany();
+  await prisma.post.deleteMany();
+  await prisma.category.deleteMany();
+  await prisma.tag.deleteMany();
+
+  console.log('🗑️  Cleared existing data');
+
+  // Seed Categories
+  console.log('📁 Seeding categories...');
+  const categories = await Promise.all(
+    categorySeeds.map((category) =>
+      prisma.category.create({
+        data: category,
+      })
+    )
+  );
+  console.log(`✅ Created ${categories.length} categories`);
+
+  // Seed Tags
+  console.log('🏷️  Seeding tags...');
+  const tags = await Promise.all(
+    tagSeeds.map((tag) =>
+      prisma.tag.create({
+        data: tag,
+      })
+    )
+  );
+  console.log(`✅ Created ${tags.length} tags`);
+
+  // Seed Posts with relations
+  console.log('📝 Seeding posts...');
+  for (const postData of postSeeds) {
+    const { categoryNames, tagNames, ...postFields } = postData;
+
+    // Find category IDs
+    const postCategories = await prisma.category.findMany({
+      where: {
+        name: {
+          in: categoryNames,
+        },
+      },
+    });
+
+    // Find tag IDs
+    const postTags = await prisma.tag.findMany({
+      where: {
+        name: {
+          in: tagNames,
+        },
+      },
+    });
+
+    // Create post with relations
+    await prisma.post.create({
+      data: {
+        ...postFields,
+        category: {
+          connect: postCategories.map((cat) => ({ id: cat.id })),
+        },
+        tag: {
+          connect: postTags.map((tag) => ({ id: tag.id })),
+        },
+      },
+    });
+
+    console.log(`  ✅ Created post: ${postFields.title}`);
+  }
+
+  console.log('🎉 Seeding completed successfully!');
+}
 
 main()
   .catch((e) => {
-    console.error(e);
+    console.error('❌ Error seeding database:', e);
     process.exit(1);
   })
   .finally(async () => {
