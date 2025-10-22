@@ -72,9 +72,9 @@ export const addPostToDb = async ({
 
   await prisma.post.create({
     data: {
-      authorId: userId,
+      authorId: userId.toLocaleString(),
       content,
-      category: {
+      categories: {
         connect: [{ id: categoryId }],
       },
       coverImage,
@@ -83,7 +83,7 @@ export const addPostToDb = async ({
       publishedAt,
       slug,
       title,
-      tag: {
+      tags: {
         connect: tags.map((tag) => ({ id: tag.id })),
       },
     },

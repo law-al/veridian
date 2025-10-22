@@ -15,7 +15,6 @@ export default function NavProvider({
   const [openSearch, setOpenSearch] = useState<boolean>(false);
 
   const handleOpenSearch = (value?: boolean) => {
-    console.log('clicked');
     if (value) {
       setOpenSearch(value);
     } else {

@@ -302,7 +302,6 @@ export const handleImageUpload = async (
     'image/webp',
   ];
 
-  console.log('entered');
   // Validate file
   if (!file) {
     throw new Error('No file provided');
@@ -382,7 +381,7 @@ export const handleImageUpload = async (
     onProgress?.({ progress });
   }
 
-  return '/hero.png';
+  return '/HeroSection.png';
 };
 */
 

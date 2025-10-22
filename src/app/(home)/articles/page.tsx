@@ -1,11 +1,11 @@
-import Articles from '@/components/articles';
-import BlogMode from '@/components/blog-mode';
-import Filters from '@/components/filters';
+import ArticlesList from '@/components/features/articles/articles-list';
+import BlogMode from '@/components/features/blog/blog-mode';
+import ArticlesFilters from '@/components/features/articles/articles-filters';
 import BlogModeProvider from '@/contexts/blog-mode-context';
 import { playfair } from '@/lib/fonts';
 import React, { Suspense } from 'react';
 import { getArticles, getTotalPost } from '@/lib/data';
-import EmptyState from '@/components/no-post';
+import EmptyState from '@/components/common/empty-state';
 
 export default async function Page({
   searchParams,
@@ -32,14 +32,14 @@ export default async function Page({
           All Articles
         </h2>
         <div className='border flex items-center justify-between border-gray-200 rounded-lg p-4 mt-10 bg-white'>
-          <Filters />
+          <ArticlesFilters />
           <BlogMode />
         </div>
 
         {results[0].length < 1 ? (
           <EmptyState type='no-results' searchTerm={search} />
         ) : (
-          <Articles
+          <ArticlesList
             posts={results[0]}
             page={+page}
             pageSize={6}

@@ -21,10 +21,11 @@ enum BlogImagesStatus {
 
 model BlogImage {
   id       String           @id @default(cuid())
-  userId   Int
+  userId   String
   publicId String
   url      String
   status   BlogImagesStatus @default(IN_USE)
+  User     User             @relation(fields: [userId], references: [clerkId])
 
   @@map("blog_images")
 }
@@ -33,29 +34,63 @@ enum BlogStatus {
   DRAFT
   PUBLISHED
 }
+
+enum UserRole {
+  READER
+  WRITER
+  EDITOR
+  ADMIN
+}
+
+enum Subscription {
+  FREE
+  PRO
+  ENTERPRISE
+}
+
+model User {
+  clerkId      String       @unique
+  username     String       @unique
+  email        String       @unique
+  password     String?
+  image        String?
+  bio String
+  role         UserRole     @default(READER)
+  subscribed   Boolean      @default(false) @map("subscribed")
+  subscription Subscription @default(FREE) @map("subscription")
+  createdAt    DateTime     @default(now()) @map("created_at")
+  updatedAt    DateTime     @updatedAt @map("updated_at")
+
+  posts      Post[]
+  comments   Comment[]
+  likes      Like[]
+  blogImages BlogImage[]
+
+  @@map("users")
+}
+
 model Post {
-  id String @id @default(cuid())
-  title String
-  slug String
-  content String
-  excerpt String
-  coverImage String
-  status BlogStatus @default(DRAFT)
-  authorId Int
+  id          String     @id @default(cuid())
+  title       String
+  slug        String
+  content     String
+  excerpt     String
+  coverImage  String
+  status      BlogStatus @default(DRAFT)
+  authorId    String
   publishedAt DateTime
 
-  category Category[]
-  tag Tag[]
-  comment Comment[]
-  like Like[]
-
+  author     User       @relation(fields: [authorId], references: [clerkId])
+  categories Category[]
+  tags       Tag[]
+  comments   Comment[]
+  likes      Like[]
 
   @@map("posts")
-
 }
 
 model Category {
-  id String @id @default(cuid())
+  id   String @id @default(cuid())
   name String
   slug String
 
@@ -64,32 +99,40 @@ model Category {
   @@map("categories")
 }
 
-
 model Tag {
-id String @id @default(cuid())
-name String
-slug String @unique
+  id   String @id @default(cuid())
+  name String
+  slug String @unique
 
-post Post[]
+  post Post[]
 
-@@map("tags")
+  @@map("tags")
 }
 
-model Comment{
-  id String @id @default(cuid())
-  content String
+model Comment {
+  id       String  @id @default(cuid())
+  content  String
   parentId String?
 
-
   postId String
-  post Post @relation(fields: [postId], references: [id])
-  authorId Int
+  post   Post   @relation(fields: [postId], references: [id])
+  userId String
+  user   User   @relation(fields: [userId], references: [clerkId])
+
+  @@map("comments")
 }
 
 model Like {
-  id String @id @default(cuid())
-  userId Int
-
+  id     String @id @default(cuid())
+  userId String
   postId String
-  post Post @relation(fields: [postId], references: [id])
+   createdAt DateTime @default(now())
+
+  post   Post   @relation(fields: [postId], references: [id])
+  User   User   @relation(fields: [userId], references: [clerkId])
+
+  @@unique([userId, postId])
+  @@index([postId])
+
+  @@map("likes")
 }

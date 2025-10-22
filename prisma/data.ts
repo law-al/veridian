@@ -314,7 +314,7 @@ export const postSeeds = [
     coverImage:
       'https://images.unsplash.com/photo-1579468118864-1b9ea3c0db4a?w=800',
     status: 'PUBLISHED' as BlogStatus,
-    authorId: 1,
+    authorId: 'user_34NZE1HbnajkcwuZZ1DJXVwCW5M',
     publishedAt: new Date('2024-01-15'),
     categoryNames: ['tech'],
     tagNames: ['javascript', 'promises', 'async', 'programming'],
@@ -328,7 +328,7 @@ export const postSeeds = [
     coverImage:
       'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800',
     status: 'PUBLISHED' as BlogStatus,
-    authorId: 1,
+    authorId: 'user_34NZE1HbnajkcwuZZ1DJXVwCW5M',
     publishedAt: new Date('2024-02-20'),
     categoryNames: ['tech'],
     tagNames: ['nextjs', 'react', 'webdev', 'frontend'],
@@ -342,7 +342,7 @@ export const postSeeds = [
     coverImage:
       'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800',
     status: 'PUBLISHED' as BlogStatus,
-    authorId: 1,
+    authorId: 'user_34NZE1HbnajkcwuZZ1DJXVwCW5M',
     publishedAt: new Date('2024-03-10'),
     categoryNames: ['tech'],
     tagNames: ['express', 'nodejs', 'api', 'backend'],
@@ -356,7 +356,7 @@ export const postSeeds = [
     coverImage:
       'https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=800',
     status: 'PUBLISHED' as BlogStatus,
-    authorId: 1,
+    authorId: 'user_34NZE1HbnajkcwuZZ1DJXVwCW5M',
     publishedAt: new Date('2024-04-05'),
     categoryNames: ['tech'],
     tagNames: ['css', 'frontend', 'webdev', 'design'],
@@ -370,7 +370,7 @@ export const postSeeds = [
     coverImage:
       'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800',
     status: 'DRAFT' as BlogStatus,
-    authorId: 1,
+    authorId: 'user_34NZE1HbnajkcwuZZ1DJXVwCW5M',
     publishedAt: new Date('2024-05-12'),
     categoryNames: ['tech'],
     tagNames: ['redux', 'react', 'state-management', 'javascript'],
@@ -385,7 +385,7 @@ export const postSeeds = [
     coverImage:
       'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800',
     status: 'PUBLISHED' as BlogStatus,
-    authorId: 1,
+    authorId: 'user_34NZE1HbnajkcwuZZ1DJXVwCW5M',
     publishedAt: new Date('2024-02-10'),
     categoryNames: ['tech'],
     tagNames: ['javascript', 'async', 'promises', 'programming'],
@@ -401,7 +401,7 @@ export const postSeeds = [
     coverImage:
       'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?w=800',
     status: 'PUBLISHED' as BlogStatus,
-    authorId: 1,
+    authorId: 'user_34NZE1HbnajkcwuZZ1DJXVwCW5M',
     publishedAt: new Date('2024-03-18'),
     categoryNames: ['tech'],
     tagNames: ['express', 'nodejs', 'api', 'backend'],
@@ -415,7 +415,7 @@ export const postSeeds = [
     coverImage:
       'https://images.unsplash.com/photo-1581092334425-c6e9b8d20b5a?w=800',
     status: 'PUBLISHED' as BlogStatus,
-    authorId: 1,
+    authorId: 'user_34NZE1HbnajkcwuZZ1DJXVwCW5M',
     publishedAt: new Date('2024-04-05'),
     categoryNames: ['tech'],
     tagNames: ['nextjs', 'react', 'webdev', 'frontend'],
@@ -429,7 +429,7 @@ export const postSeeds = [
     coverImage:
       'https://images.unsplash.com/photo-1507721999472-8ed4421c4af2?w=800',
     status: 'PUBLISHED' as BlogStatus,
-    authorId: 1,
+    authorId: 'user_34NZE1HbnajkcwuZZ1DJXVwCW5M',
     publishedAt: new Date('2024-05-20'),
     categoryNames: ['tech'],
     tagNames: ['css', 'frontend', 'webdev', 'design'],
@@ -443,7 +443,7 @@ export const postSeeds = [
     coverImage:
       'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800',
     status: 'PUBLISHED' as BlogStatus,
-    authorId: 1,
+    authorId: 'user_34NZE1HbnajkcwuZZ1DJXVwCW5M',
     publishedAt: new Date('2024-06-01'),
     categoryNames: ['tech'],
     tagNames: ['redux', 'react', 'javascript', 'state-management'],
@@ -459,7 +459,7 @@ export const postSeeds = [
     coverImage:
       'https://images.unsplash.com/photo-1484981138541-3d074aa97716?w=800',
     status: 'PUBLISHED' as BlogStatus,
-    authorId: 1,
+    authorId: 'user_34NZE1HbnajkcwuZZ1DJXVwCW5M',
     publishedAt: new Date('2024-06-22'),
     categoryNames: ['lifestyle'],
     tagNames: ['programming', 'webdev'],
@@ -473,7 +473,7 @@ export const postSeeds = [
     coverImage:
       'https://images.unsplash.com/photo-1554224154-22dec7ec8818?w=800',
     status: 'PUBLISHED' as BlogStatus,
-    authorId: 1,
+    authorId: 'user_34NZE1HbnajkcwuZZ1DJXVwCW5M',
     publishedAt: new Date('2024-07-12'),
     categoryNames: ['finance'],
     tagNames: ['education'],
@@ -489,7 +489,7 @@ export const postSeeds = [
     coverImage:
       'https://images.unsplash.com/photo-1518611012118-fb9a9033e05a?w=800',
     status: 'PUBLISHED' as BlogStatus,
-    authorId: 1,
+    authorId: 'user_34NZE1HbnajkcwuZZ1DJXVwCW5M',
     publishedAt: new Date('2024-08-10'),
     categoryNames: ['health & fitness'],
     tagNames: ['lifestyle'],

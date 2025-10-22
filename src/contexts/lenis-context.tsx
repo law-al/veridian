@@ -8,7 +8,7 @@ export default function LenisProvider({ children }: PropsWithChildren) {
     <ReactLenis
       root
       options={{
-        duration: 1.1,
+        duration: 0.5,
         lerp: 0.08,
         smoothWheel: true,
         touchMultiplier: 1.5,

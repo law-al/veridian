@@ -1,12 +1,12 @@
 import { cn } from '@/lib/utils';
 
-interface BlogCardSkeletonProps {
+interface PostCardSkeletonProps {
   mode?: 'grid' | 'straight';
 }
 
-export default function BlogCardSkeleton({
+export default function PostCardSkeleton({
   mode = 'grid',
-}: BlogCardSkeletonProps) {
+}: PostCardSkeletonProps) {
   return (
     <article className='w-full'>
       <div

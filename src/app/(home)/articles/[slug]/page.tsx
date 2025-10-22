@@ -1,9 +1,13 @@
-import AuthorProfile from '@/components/author-profile';
-import BlogContent from '@/components/blog-content';
-import BlogDetails from '@/components/blog-details';
-import BlogMeta from '@/components/blog-meta';
+import AuthorProfile from '@/components/features/author/author-profile';
+import BlogContent from '@/components/features/blog/blog-content';
+import BlogDetails from '@/components/features/blog/blog-details';
+import BlogMeta from '@/components/features/blog/blog-meta';
 import { prisma } from '@/lib/prisma';
 import { notFound } from 'next/navigation';
+import { getAritcle, getUser } from '@/lib/data';
+import PostActions from '@/components/features/posts/post-actions';
+import AuthorDetails from '@/components/features/author/author-details';
+import CommentsList from '@/components/features/comments/comments-list';
 
 export async function generateStaticParams() {
   const posts = await prisma.post.findMany({
@@ -20,26 +24,46 @@ export async function generateStaticParams() {
   return ids;
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const post = await prisma.post.findFirst({
-    where: { slug: params.slug },
-  });
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const [article, user] = await Promise.all([getAritcle(slug), getUser()]);
 
-  if (!post) {
+  if (!article) {
     notFound();
   }
 
   return (
     <section className='mt-10 w-[1200px] mx-auto'>
-      <AuthorProfile />
+      <AuthorProfile
+        image={article.author.image || ''}
+        name={article.author.username || 'John Doe'}
+        publishedAt={article.publishedAt}
+      />
       <BlogDetails>
         <BlogMeta
-          excerpt={post.excerpt}
-          image={post.coverImage}
-          title={post.title}
+          excerpt={article.excerpt}
+          image={article.coverImage}
+          title={article.title}
         />
-        <BlogContent htmlContent={post.content} />
+        <BlogContent htmlContent={article.content} />
+        <PostActions
+          article={article}
+          likesCount={article.likesCount}
+          isLikedByUser={article.isLikedByUser}
+          user={user}
+        />
       </BlogDetails>
+      <AuthorDetails author={article.author} user={user} />
+      <CommentsList
+        redirectParams={slug}
+        author={article.author}
+        user={user}
+        comments={article.comments}
+      />
     </section>
   );
 }

@@ -42,7 +42,7 @@ async function main() {
   );
   console.log(`✅ Created ${tags.length} tags`);
 
-  // Seed Posts with relations
+  // Seed PostList with relations
   console.log('📝 Seeding posts...');
   for (const postData of postSeeds) {
     const { categoryNames, tagNames, ...postFields } = postData;
@@ -69,10 +69,10 @@ async function main() {
     await prisma.post.create({
       data: {
         ...postFields,
-        category: {
+        categories: {
           connect: postCategories.map((cat) => ({ id: cat.id })),
         },
-        tag: {
+        tags: {
           connect: postTags.map((tag) => ({ id: tag.id })),
         },
       },

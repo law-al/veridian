@@ -1,5 +1,5 @@
 // app/blog/loading.tsx (Final Recommendation)
-import BlogCardSkeleton from '@/components/skeletons/blog-card-skeleton';
+import PostCardSkeleton from '@/components/skeletons/blog-card-skeleton';
 import { playfair } from '@/lib/fonts';
 
 export default function Loading() {
@@ -21,7 +21,7 @@ export default function Loading() {
 
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6 mt-10'>
         {Array.from({ length: 8 }).map((_, i) => (
-          <BlogCardSkeleton key={i} />
+          <PostCardSkeleton key={i} />
         ))}
       </div>
     </section>

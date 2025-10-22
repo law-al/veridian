@@ -1,10 +1,10 @@
 import React from 'react';
-import FormInputField from '../shared/form-input-field';
-import FormTextareaField from '../shared/form-textarea-field';
+import FormInputField from '../../shared/form/form-input-field';
+import FormTextareaField from '../../shared/form/form-textarea-field';
 import { UseFormReturn } from 'react-hook-form';
 import { formSchema } from '@/declaration';
 import { z } from 'zod';
-import { FormSelectField } from '../shared/form-select-field';
+import { FormSelectField } from '../../shared/form/form-select-field';
 import TagField from './tag-input-field';
 import { useCreateBlogContext } from '@/contexts/create-blog-context';
 

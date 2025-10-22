@@ -2,7 +2,6 @@
 
 import { blogFormSchema } from '@/schema';
 import uploadImages from '@/services/cloudinary/upload-image';
-import { purifyHtml } from '../purify-html';
 import {
   addPostToDb,
   getCategoryFromdb,
@@ -10,6 +9,7 @@ import {
 } from '@/services/database/blog.db';
 import slugify from 'slugify';
 import { revalidatePath } from 'next/cache';
+import { purifyHtml } from '../utils';
 
 export type ActionState = {
   success: boolean;
@@ -23,6 +23,21 @@ const user = {
   username: 'lawfem',
 };
 
+/**
+ * The function `addPostToDB` handles the process of adding a new blog post to a database with error
+ * handling and validation.
+ * @param {ActionState} prevState - `prevState` is the previous state of the application before adding
+ * a new blog post to the database. It likely contains information about the current state of the
+ * application or any data related to blog posts that are already present.
+ * @param {FormData} formData - The `formData` parameter in the `addPostToDB` function contains the
+ * data submitted from a form when creating a new blog post. It includes the following fields:
+ * @returns The function `addPostToDB` returns a Promise that resolves to an `ActionState` object. This
+ * object contains the following properties:
+ * - `success`: A boolean indicating whether the operation was successful or not.
+ * - `message`: A string message describing the outcome of the operation.
+ * - `slug`: A string representing the slug of the blog post created (if successful).
+ * - `error`: A
+ */
 export async function addPostToDB(
   prevState: ActionState,
   formData: FormData

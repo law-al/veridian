@@ -1,7 +1,7 @@
 import { prisma } from '@/lib/prisma';
 
 export async function saveBlogImage(
-  userId: number,
+  userId: string,
   publicId: string,
   url: string
 ) {

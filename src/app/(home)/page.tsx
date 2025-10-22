@@ -1,11 +1,10 @@
-import Hero from '@/components/home/hero';
-import Posts from '@/components/posts';
-import RecentPosts from '@/components/home/featured';
+import HeroSection from '@/components/pages/home/hero-section';
+import PostListHome from '@/components/pages/home/post-list-home';
 
 import React, { Suspense } from 'react';
-import NewsLetter from '@/components/home/news-letter';
-import CategoryPreview from '@/components/home/category-preview';
-import BlogCardSkeleton from '@/components/skeletons/blog-card-skeleton';
+import NewsLetter from '@/components/pages/home/newsletter';
+import CategoryPreview from '@/components/pages/home/category-preview';
+import PostListHomeSkeleton from '@/components/skeletons/post-list-home-skeleton';
 
 export default async function Page({
   searchParams,
@@ -18,9 +17,11 @@ export default async function Page({
 
   return (
     <>
-      <Hero />
+      <HeroSection />
       <CategoryPreview>
-        <Posts category={category} />
+        <Suspense fallback={<PostListHomeSkeleton />}>
+          <PostListHome category={category} />
+        </Suspense>
       </CategoryPreview>
       <NewsLetter />
     </>

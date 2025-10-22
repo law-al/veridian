@@ -5,7 +5,7 @@ import { Image } from '@tiptap/extension-image';
 import { ImageUploadNode } from '@/components/tiptap-node/image-upload-node';
 import { MAX_FILE_SIZE } from '@/lib/tiptap-utils';
 import { useState } from 'react';
-import { handleImageUpload } from '@/lib/upload-editor-image';
+import { handleImageUpload } from '@/lib/utils';
 
 interface UploadedEditorImages {
   public_id: string;

@@ -8,7 +8,8 @@ import {
   getTagsFromDb,
 } from '@/services/database/blog.db';
 import { asyncHandler } from '@/lib/async-handler';
-import { purifyHtml } from '@/lib/purify-html';
+import { purifyHtml } from '@/lib/utils';
+purifyHtml
 
 const user = {
   id: 1,

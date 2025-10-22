@@ -6,12 +6,12 @@ import { Form } from '@/components/ui/form';
 import { formSchema } from '@/declaration';
 import BlogContentEditor from './blog-editor/blog-content-editor';
 import BlogMetaField from './blog-meta-field';
-import cleanupRemovedEditorImages from '@/lib/cleanup-removed-editor-images';
 import { useCreateBlogContext } from '@/contexts/create-blog-context';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
 import BlogFormActions from './blog-form-actions';
 import { ActionState, addPostToDB } from '@/lib/actions/blog';
+import cleanupRemovedEditorImages from '@/lib/utils';
 
 export default function BlogForm() {
   const initialState: ActionState = { success: false, message: '' };
